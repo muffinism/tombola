@@ -1,0 +1,13 @@
+<mat-grid-list cols="5" rowHeight="2:1">
+  <div *ngFor="let num of schedina">
+    <mat-grid-tile>
+      <mat-card
+        [ngStyle]="{
+          'background-color': num.isLit ? 'red' : ''
+        }"
+      >
+        {{ num.numero ? num.numero : '--' }}
+      </mat-card>
+    </mat-grid-tile>
+  </div>
+</mat-grid-list>
