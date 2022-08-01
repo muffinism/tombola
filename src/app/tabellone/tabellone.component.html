@@ -14,7 +14,7 @@
   <div *ngIf="!isWinner">
     <button mat-raised-button color="warn" (click)="estrai()">Estrai</button>
   </div>
-  <div style="{text-align: center;}" *ngIf="isWinner">
+  <div *ngIf="isWinner">
     <button mat-raised-button color="warn" (click)="resetGioco()">
       Rigioca
     </button>
@@ -34,7 +34,7 @@
   <br />
   <mat-grid-list cols="2" rowHeight="">
     <div *ngFor="let player of numSequence(); let i = index">
-      <h3>Giocatore n°{{ i + 1 }}</h3>
+      <h3>{{ i + 1 }}. {{nomi[i]}}</h3>
       <span *ngIf="i == winner" style="color: red;">WINNER!</span>
 
       <app-scheda
@@ -74,4 +74,8 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+</div>
+
+<div *ngFor="let el of nomiGiocatori.data | async">
+  {{el}}
 </div>

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
-import { EstrazioneComponent } from './estrazione/estrazione.component';
 import { TabelloneComponent } from './tabellone/tabellone.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -21,10 +20,10 @@ import { IndexComponent } from './index/index.component';
     MatGridListModule,
     MatButtonModule,
     MatTableModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
-    EstrazioneComponent,
     TabelloneComponent,
     SchedaComponent,
     IndexComponent,

@@ -1,3 +1,4 @@
+import { NomiGiocatoriService } from './../utility/utility.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,23 +19,32 @@ export class TabelloneComponent implements OnInit {
   winner!: number;
   record: Record[] = [];
   displayedColumns = ['player', 'numPartite', 'mosse'];
+  nomi: string[] = [];
 
-  constructor(private cdRef: ChangeDetectorRef, private route: ActivatedRoute) {
+  constructor(private cdRef: ChangeDetectorRef, private route: ActivatedRoute, public nomiGiocatori: NomiGiocatoriService) {
     this.route.params.subscribe((params) => {
       this.numeroGiocatori = parseInt(params['numeroGiocatori']);
     });
+    this.nomiGiocatori.nomi.subscribe({
+      next: res => {
+        this.nomi = res;
+        console.log(res);
+      },
+      error: err =>{
+        alert(err);
+      }
+    })
   }
 
   ngOnInit() {
-    console.log(this.numeroGiocatori);
     this.riempiTabellone();
-    for (let i = 0; i < this.numeroGiocatori; i++) {
+    for (let i = 0; i < this.nomi.length; i++) {
       this.isReset.push(false);
     }
   }
 
   numSequence(): Array<number> {
-    return Array(this.numeroGiocatori);
+    return Array(this.nomi.length);
   }
 
   riempiTabellone() {
@@ -80,7 +90,7 @@ export class TabelloneComponent implements OnInit {
     this.riempiTabellone();
     record.push({
       numPartite: this.matchCount,
-      player: this.winner,
+      player: this.nomi[this.winner],
       mosse: 90 - this.numeriRimanenti,
     });
     this.record = record;
@@ -106,6 +116,6 @@ export interface Tile {
 
 export interface Record {
   numPartite: number;
-  player: number;
+  player: string;
   mosse: number;
 }

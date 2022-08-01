@@ -1,0 +1,58 @@
+$button-color: rgb(241, 234, 39);
+$button-display: flex;
+$button-align: center;
+$button-shadow: 2px 2px 4px #000000;
+$card-shadow: 2px 2px 6px black;
+
+%card-border{
+  border-style: outset;
+  border: 3px;
+  border-color:#504545;
+  border-radius: 25px;
+}
+
+%element-raise{
+  transition: box-shadow 0.3s ease-out;
+  &:hover{
+    box-shadow:  5px 15px 25px black !important;
+   }
+}
+
+
+
+.home{
+  @extend %card-border;
+  @extend %element-raise;
+  background-color: rgba(238, 198, 175, 0.3);
+  width: 400px;
+  padding: 2%;
+  margin: auto;
+  box-shadow: $card-shadow;
+
+  button{
+    margin: 20px;
+    box-shadow: $button-shadow;
+    display: $button-display;
+    &:disabled{
+      box-shadow: $button-shadow !important;
+      color: grey;
+    }
+    @extend %element-raise;
+    &:hover{
+      color: $button-color !important;
+    }
+  }
+}
+
+.text{
+  white-space: nowrap;
+  text-shadow: 1px 1px 2px black, 0 0 25px  rgb(218, 209, 188), 0 0 5px  rgb(125, 121, 110) !important;
+}
+
+input{
+  margin: auto;
+}
+
+input.ng-touched.ng-invalid{
+  border: red 2px solid;
+}
